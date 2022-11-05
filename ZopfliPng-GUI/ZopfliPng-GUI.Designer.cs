@@ -38,6 +38,8 @@
             this.afterSizeValueLabel = new System.Windows.Forms.Label();
             this.afterSizeTitleLabel = new System.Windows.Forms.Label();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.compressCountValuelabel = new System.Windows.Forms.Label();
+            this.compressCountTitlelabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // compressButton
@@ -62,7 +64,6 @@
             this.progressBar.Step = 1;
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar.TabIndex = 1;
-            this.progressBar.Value = 1;
             // 
             // dropPointLabel
             // 
@@ -91,11 +92,11 @@
             this.beforeSizeTitleLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.beforeSizeTitleLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.beforeSizeTitleLabel.ForeColor = System.Drawing.Color.Black;
-            this.beforeSizeTitleLabel.Location = new System.Drawing.Point(14, 47);
+            this.beforeSizeTitleLabel.Location = new System.Drawing.Point(13, 63);
             this.beforeSizeTitleLabel.Name = "beforeSizeTitleLabel";
             this.beforeSizeTitleLabel.Size = new System.Drawing.Size(66, 18);
             this.beforeSizeTitleLabel.TabIndex = 6;
-            this.beforeSizeTitleLabel.Text = "BeforeSize";
+            this.beforeSizeTitleLabel.Text = "BeforeByte";
             // 
             // beforeSizeValueLabel
             // 
@@ -103,7 +104,7 @@
             this.beforeSizeValueLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.beforeSizeValueLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.beforeSizeValueLabel.ForeColor = System.Drawing.Color.Black;
-            this.beforeSizeValueLabel.Location = new System.Drawing.Point(73, 47);
+            this.beforeSizeValueLabel.Location = new System.Drawing.Point(75, 63);
             this.beforeSizeValueLabel.Name = "beforeSizeValueLabel";
             this.beforeSizeValueLabel.Size = new System.Drawing.Size(70, 18);
             this.beforeSizeValueLabel.TabIndex = 7;
@@ -116,7 +117,7 @@
             this.afterSizeValueLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.afterSizeValueLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.afterSizeValueLabel.ForeColor = System.Drawing.Color.Black;
-            this.afterSizeValueLabel.Location = new System.Drawing.Point(73, 65);
+            this.afterSizeValueLabel.Location = new System.Drawing.Point(75, 81);
             this.afterSizeValueLabel.Name = "afterSizeValueLabel";
             this.afterSizeValueLabel.Size = new System.Drawing.Size(70, 18);
             this.afterSizeValueLabel.TabIndex = 9;
@@ -129,11 +130,11 @@
             this.afterSizeTitleLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.afterSizeTitleLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.afterSizeTitleLabel.ForeColor = System.Drawing.Color.Black;
-            this.afterSizeTitleLabel.Location = new System.Drawing.Point(14, 65);
+            this.afterSizeTitleLabel.Location = new System.Drawing.Point(13, 81);
             this.afterSizeTitleLabel.Name = "afterSizeTitleLabel";
             this.afterSizeTitleLabel.Size = new System.Drawing.Size(66, 18);
             this.afterSizeTitleLabel.TabIndex = 8;
-            this.afterSizeTitleLabel.Text = "AfterSize";
+            this.afterSizeTitleLabel.Text = "AfterByte";
             // 
             // backgroundWorker
             // 
@@ -141,12 +142,39 @@
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
+            // compressCountValuelabel
+            // 
+            this.compressCountValuelabel.BackColor = System.Drawing.Color.White;
+            this.compressCountValuelabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.compressCountValuelabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.compressCountValuelabel.ForeColor = System.Drawing.Color.Black;
+            this.compressCountValuelabel.Location = new System.Drawing.Point(75, 47);
+            this.compressCountValuelabel.Name = "compressCountValuelabel";
+            this.compressCountValuelabel.Size = new System.Drawing.Size(70, 18);
+            this.compressCountValuelabel.TabIndex = 11;
+            this.compressCountValuelabel.Text = "999999999999";
+            this.compressCountValuelabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // compressCountTitlelabel
+            // 
+            this.compressCountTitlelabel.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.compressCountTitlelabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.compressCountTitlelabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.compressCountTitlelabel.ForeColor = System.Drawing.Color.Black;
+            this.compressCountTitlelabel.Location = new System.Drawing.Point(13, 47);
+            this.compressCountTitlelabel.Name = "compressCountTitlelabel";
+            this.compressCountTitlelabel.Size = new System.Drawing.Size(66, 18);
+            this.compressCountTitlelabel.TabIndex = 10;
+            this.compressCountTitlelabel.Text = "Compress";
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(285, 159);
+            this.ClientSize = new System.Drawing.Size(280, 159);
+            this.Controls.Add(this.compressCountValuelabel);
+            this.Controls.Add(this.compressCountTitlelabel);
             this.Controls.Add(this.afterSizeValueLabel);
             this.Controls.Add(this.afterSizeTitleLabel);
             this.Controls.Add(this.beforeSizeValueLabel);
@@ -175,5 +203,7 @@
         private Label afterSizeValueLabel;
         private Label afterSizeTitleLabel;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private Label compressCountValuelabel;
+        private Label compressCountTitlelabel;
     }
 }
