@@ -26,7 +26,13 @@ Overwrites the original Png files.
 
 ---
 
-・Windows10
+- Windows10
+
+## [Framework]
+
+---
+
+- .Net 6.0
 
 ## [Checker]
 
@@ -36,7 +42,7 @@ WInMerge can be used as a tool to ensure that Png files are lossless
 
 ## [Reference]
 
-- The native binary file used in this program is the release file here.
+- The native binary file used in this program is the release file here.  
   https://github.com/imagemin/zopflipng-bin
 
 - Original  
