@@ -11,7 +11,7 @@ namespace ZopfliPng_GUI
         private long beforeSize = 0;
         private long afterSize = 0;
         private long successCount = 0;
-
+        private readonly string workDir = Environment.CurrentDirectory + @"\tmp";
         public MainForm()
         {
             InitializeComponent();
@@ -63,6 +63,7 @@ namespace ZopfliPng_GUI
         private void compressButton_Click(object sender, EventArgs e)
         {
             if (_state != State.Ready) return;
+
             ChangeState(State.Start);
             backgroundWorker.RunWorkerAsync();
         }
@@ -108,17 +109,33 @@ namespace ZopfliPng_GUI
                 int index = 0;
                 long beforeSize = 0;
                 long afterSize = 0;
+                float reduceSize = 0;
+                string workPath = string.Empty;
                 ProcessStartInfo psi = new ProcessStartInfo(Environment.CurrentDirectory + @"\Vendor\zopflipng.exe");
                 psi.CreateNoWindow = true;
 
+                if (Directory.Exists(workDir))
+                {
+                    Directory.Delete(workDir, true);
+                }
+                Directory.CreateDirectory(workDir);
+
                 foreach (var file in _targetFiles)
                 {
+                    workPath = workDir + @"\" + Path.GetFileName(file);
                     beforeSize = new FileInfo(file).Length;
                     index++;
-                    psi.Arguments = String.Format("{0} {0} -y", file);
+                    psi.Arguments = String.Format("{0} {1} -y", file, workPath);
                     Process.Start(psi)?.WaitForExit();
-                    afterSize = new FileInfo(file).Length;
-                    if (beforeSize > afterSize) successCount++;
+                    afterSize = new FileInfo(workPath).Length;
+                    reduceSize = (float)afterSize / (float)beforeSize * 100;
+                    if (reduceSize < (float)MinCompressionRatioValuepDown1.Value)
+                    {
+                        Debug.Print(file + reduceSize.ToString());
+                        successCount++;
+                        File.Copy(workPath, file, true);
+                    }
+                    File.Delete(workPath);
                     backgroundWorker.ReportProgress(index);
                     
                 }
@@ -155,6 +172,8 @@ namespace ZopfliPng_GUI
                     beforeSizeValueLabel.Visible = false;
                     afterSizeTitleLabel.Visible = false;
                     afterSizeValueLabel.Visible = false;
+                    progressBar.Value = 0;
+                    progressBar.Refresh();
                     break;
                 case State.Ready:
                     guidanceLabel.Text = "Press the Compress button";
