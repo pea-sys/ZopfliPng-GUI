@@ -40,6 +40,15 @@
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.compressCountValuelabel = new System.Windows.Forms.Label();
             this.compressCountTitlelabel = new System.Windows.Forms.Label();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.mainPage = new System.Windows.Forms.TabPage();
+            this.settingPage = new System.Windows.Forms.TabPage();
+            this.MinCompressionRatioValuepDown1 = new System.Windows.Forms.NumericUpDown();
+            this.MinCompressionRatioTitleLabel = new System.Windows.Forms.Label();
+            this.tabControl.SuspendLayout();
+            this.mainPage.SuspendLayout();
+            this.settingPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MinCompressionRatioValuepDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // compressButton
@@ -47,8 +56,8 @@
             this.compressButton.Enabled = false;
             this.compressButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.compressButton.FlatAppearance.BorderSize = 3;
-            this.compressButton.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.compressButton.Location = new System.Drawing.Point(12, 12);
+            this.compressButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.compressButton.Location = new System.Drawing.Point(11, 15);
             this.compressButton.Name = "compressButton";
             this.compressButton.Size = new System.Drawing.Size(106, 32);
             this.compressButton.TabIndex = 0;
@@ -58,7 +67,7 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(12, 135);
+            this.progressBar.Location = new System.Drawing.Point(11, 138);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(239, 15);
             this.progressBar.Step = 1;
@@ -70,7 +79,7 @@
             this.dropPointLabel.AllowDrop = true;
             this.dropPointLabel.Image = ((System.Drawing.Image)(resources.GetObject("dropPointLabel.Image")));
             this.dropPointLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.dropPointLabel.Location = new System.Drawing.Point(3, -2);
+            this.dropPointLabel.Location = new System.Drawing.Point(2, 1);
             this.dropPointLabel.Name = "dropPointLabel";
             this.dropPointLabel.Size = new System.Drawing.Size(278, 163);
             this.dropPointLabel.TabIndex = 4;
@@ -80,7 +89,7 @@
             // guidanceLabel
             // 
             this.guidanceLabel.BackColor = System.Drawing.Color.Transparent;
-            this.guidanceLabel.Location = new System.Drawing.Point(8, 118);
+            this.guidanceLabel.Location = new System.Drawing.Point(7, 121);
             this.guidanceLabel.Name = "guidanceLabel";
             this.guidanceLabel.Size = new System.Drawing.Size(173, 23);
             this.guidanceLabel.TabIndex = 5;
@@ -92,7 +101,7 @@
             this.beforeSizeTitleLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.beforeSizeTitleLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.beforeSizeTitleLabel.ForeColor = System.Drawing.Color.Black;
-            this.beforeSizeTitleLabel.Location = new System.Drawing.Point(13, 63);
+            this.beforeSizeTitleLabel.Location = new System.Drawing.Point(12, 66);
             this.beforeSizeTitleLabel.Name = "beforeSizeTitleLabel";
             this.beforeSizeTitleLabel.Size = new System.Drawing.Size(66, 18);
             this.beforeSizeTitleLabel.TabIndex = 6;
@@ -104,7 +113,7 @@
             this.beforeSizeValueLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.beforeSizeValueLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.beforeSizeValueLabel.ForeColor = System.Drawing.Color.Black;
-            this.beforeSizeValueLabel.Location = new System.Drawing.Point(75, 63);
+            this.beforeSizeValueLabel.Location = new System.Drawing.Point(74, 66);
             this.beforeSizeValueLabel.Name = "beforeSizeValueLabel";
             this.beforeSizeValueLabel.Size = new System.Drawing.Size(70, 18);
             this.beforeSizeValueLabel.TabIndex = 7;
@@ -117,7 +126,7 @@
             this.afterSizeValueLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.afterSizeValueLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.afterSizeValueLabel.ForeColor = System.Drawing.Color.Black;
-            this.afterSizeValueLabel.Location = new System.Drawing.Point(75, 81);
+            this.afterSizeValueLabel.Location = new System.Drawing.Point(74, 84);
             this.afterSizeValueLabel.Name = "afterSizeValueLabel";
             this.afterSizeValueLabel.Size = new System.Drawing.Size(70, 18);
             this.afterSizeValueLabel.TabIndex = 9;
@@ -130,7 +139,7 @@
             this.afterSizeTitleLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.afterSizeTitleLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.afterSizeTitleLabel.ForeColor = System.Drawing.Color.Black;
-            this.afterSizeTitleLabel.Location = new System.Drawing.Point(13, 81);
+            this.afterSizeTitleLabel.Location = new System.Drawing.Point(12, 84);
             this.afterSizeTitleLabel.Name = "afterSizeTitleLabel";
             this.afterSizeTitleLabel.Size = new System.Drawing.Size(66, 18);
             this.afterSizeTitleLabel.TabIndex = 8;
@@ -148,7 +157,7 @@
             this.compressCountValuelabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.compressCountValuelabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.compressCountValuelabel.ForeColor = System.Drawing.Color.Black;
-            this.compressCountValuelabel.Location = new System.Drawing.Point(75, 47);
+            this.compressCountValuelabel.Location = new System.Drawing.Point(74, 50);
             this.compressCountValuelabel.Name = "compressCountValuelabel";
             this.compressCountValuelabel.Size = new System.Drawing.Size(70, 18);
             this.compressCountValuelabel.TabIndex = 11;
@@ -161,33 +170,94 @@
             this.compressCountTitlelabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.compressCountTitlelabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.compressCountTitlelabel.ForeColor = System.Drawing.Color.Black;
-            this.compressCountTitlelabel.Location = new System.Drawing.Point(13, 47);
+            this.compressCountTitlelabel.Location = new System.Drawing.Point(12, 50);
             this.compressCountTitlelabel.Name = "compressCountTitlelabel";
             this.compressCountTitlelabel.Size = new System.Drawing.Size(66, 18);
             this.compressCountTitlelabel.TabIndex = 10;
             this.compressCountTitlelabel.Text = "Compress";
+            // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.mainPage);
+            this.tabControl.Controls.Add(this.settingPage);
+            this.tabControl.Location = new System.Drawing.Point(1, 1);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(289, 191);
+            this.tabControl.TabIndex = 12;
+            // 
+            // mainPage
+            // 
+            this.mainPage.Controls.Add(this.beforeSizeValueLabel);
+            this.mainPage.Controls.Add(this.compressCountValuelabel);
+            this.mainPage.Controls.Add(this.compressButton);
+            this.mainPage.Controls.Add(this.compressCountTitlelabel);
+            this.mainPage.Controls.Add(this.afterSizeValueLabel);
+            this.mainPage.Controls.Add(this.progressBar);
+            this.mainPage.Controls.Add(this.afterSizeTitleLabel);
+            this.mainPage.Controls.Add(this.beforeSizeTitleLabel);
+            this.mainPage.Controls.Add(this.guidanceLabel);
+            this.mainPage.Controls.Add(this.dropPointLabel);
+            this.mainPage.Location = new System.Drawing.Point(4, 24);
+            this.mainPage.Name = "mainPage";
+            this.mainPage.Padding = new System.Windows.Forms.Padding(3);
+            this.mainPage.Size = new System.Drawing.Size(281, 163);
+            this.mainPage.TabIndex = 0;
+            this.mainPage.Text = "Main";
+            this.mainPage.UseVisualStyleBackColor = true;
+            // 
+            // settingPage
+            // 
+            this.settingPage.Controls.Add(this.MinCompressionRatioValuepDown1);
+            this.settingPage.Controls.Add(this.MinCompressionRatioTitleLabel);
+            this.settingPage.Location = new System.Drawing.Point(4, 24);
+            this.settingPage.Name = "settingPage";
+            this.settingPage.Padding = new System.Windows.Forms.Padding(3);
+            this.settingPage.Size = new System.Drawing.Size(281, 163);
+            this.settingPage.TabIndex = 1;
+            this.settingPage.Text = "Settings";
+            this.settingPage.UseVisualStyleBackColor = true;
+            // 
+            // MinCompressionRatioValuepDown1
+            // 
+            this.MinCompressionRatioValuepDown1.Location = new System.Drawing.Point(155, 13);
+            this.MinCompressionRatioValuepDown1.Name = "MinCompressionRatioValuepDown1";
+            this.MinCompressionRatioValuepDown1.Size = new System.Drawing.Size(50, 23);
+            this.MinCompressionRatioValuepDown1.TabIndex = 13;
+            this.MinCompressionRatioValuepDown1.Value = new decimal(new int[] {
+            95,
+            0,
+            0,
+            0});
+            // 
+            // MinCompressionRatioTitleLabel
+            // 
+            this.MinCompressionRatioTitleLabel.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.MinCompressionRatioTitleLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.MinCompressionRatioTitleLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinCompressionRatioTitleLabel.ForeColor = System.Drawing.Color.Black;
+            this.MinCompressionRatioTitleLabel.Location = new System.Drawing.Point(7, 14);
+            this.MinCompressionRatioTitleLabel.Name = "MinCompressionRatioTitleLabel";
+            this.MinCompressionRatioTitleLabel.Size = new System.Drawing.Size(149, 22);
+            this.MinCompressionRatioTitleLabel.TabIndex = 12;
+            this.MinCompressionRatioTitleLabel.Text = "MinCompressionRatio(%)";
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(280, 159);
-            this.Controls.Add(this.compressCountValuelabel);
-            this.Controls.Add(this.compressCountTitlelabel);
-            this.Controls.Add(this.afterSizeValueLabel);
-            this.Controls.Add(this.afterSizeTitleLabel);
-            this.Controls.Add(this.beforeSizeValueLabel);
-            this.Controls.Add(this.beforeSizeTitleLabel);
-            this.Controls.Add(this.progressBar);
-            this.Controls.Add(this.guidanceLabel);
-            this.Controls.Add(this.compressButton);
-            this.Controls.Add(this.dropPointLabel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ClientSize = new System.Drawing.Size(292, 191);
+            this.Controls.Add(this.tabControl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "ZopfliPNG_GUI";
+            this.tabControl.ResumeLayout(false);
+            this.mainPage.ResumeLayout(false);
+            this.settingPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MinCompressionRatioValuepDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -205,5 +275,10 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private Label compressCountValuelabel;
         private Label compressCountTitlelabel;
+        private TabControl tabControl;
+        private TabPage mainPage;
+        private TabPage settingPage;
+        private NumericUpDown MinCompressionRatioValuepDown1;
+        private Label MinCompressionRatioTitleLabel;
     }
 }
