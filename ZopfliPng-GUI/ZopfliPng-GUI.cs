@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing.Imaging;
 
 namespace ZopfliPng_GUI
 {
@@ -38,12 +39,15 @@ namespace ZopfliPng_GUI
             {
                 if (Directory.Exists(strs[i]))
                 {
-                    foreach(string file in Directory.EnumerateFiles(strs[i], "*.png", SearchOption.AllDirectories))
+                    foreach (string file in Directory.EnumerateFiles(strs[i], "*", SearchOption.AllDirectories))
                     {
-                        _targetFiles.Add(file);
+                        if (IsNoAnimationPNG(file))
+                        {
+                            _targetFiles.Add(file);
+                        }
                     }
                 }
-                else if (File.Exists(strs[i]) && Path.GetExtension(strs[i]) == ".png")
+                else if (File.Exists(strs[i]) && IsNoAnimationPNG(strs[i]))
                 {
                     _targetFiles.Add(strs[i]);
                 }
@@ -91,7 +95,19 @@ namespace ZopfliPng_GUI
                 _targetFiles.Clear();
             }
         }
-
+        private bool IsNoAnimationPNG(string filePath)
+        {
+            ImageCodecInfo[] decoders = ImageCodecInfo.GetImageDecoders();
+            Bitmap bmp = new Bitmap(filePath);
+            foreach (ImageCodecInfo ici in decoders)
+            {
+                if (ici.FormatDescription == "PNG" && !ImageAnimator.CanAnimate(bmp))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         private long GetFileSize(string[] strs)
         {
             long fileSize = 0;
