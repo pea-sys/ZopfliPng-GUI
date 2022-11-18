@@ -5,7 +5,8 @@ It can be handled with simple operations.
 
 ## ※Warning
 
-If the size is reduced, the original Png file is overwritten.
+If the size is reduced, the original Png file is overwritten.  
+apng is not supported.
 
 ## [usage]
 
