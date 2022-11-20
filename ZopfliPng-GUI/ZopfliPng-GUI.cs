@@ -1,7 +1,6 @@
-using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing.Imaging;
+using System.Text;
 
 namespace ZopfliPng_GUI
 {
@@ -39,15 +38,15 @@ namespace ZopfliPng_GUI
             {
                 if (Directory.Exists(strs[i]))
                 {
-                    foreach (string file in Directory.EnumerateFiles(strs[i], "*", SearchOption.AllDirectories))
+                    foreach (string file in Directory.EnumerateFiles(strs[i], "*.png", SearchOption.AllDirectories))
                     {
-                        if (IsNoAnimationPNG(file))
+                        if (IsPNG(file))
                         {
                             _targetFiles.Add(file);
                         }
                     }
                 }
-                else if (File.Exists(strs[i]) && IsNoAnimationPNG(strs[i]))
+                else if (File.Exists(strs[i]) && IsPNG(strs[i]))
                 {
                     _targetFiles.Add(strs[i]);
                 }
@@ -95,16 +94,19 @@ namespace ZopfliPng_GUI
                 _targetFiles.Clear();
             }
         }
-        private bool IsNoAnimationPNG(string filePath)
+        private bool IsPNG(string filePath)
         {
-            ImageCodecInfo[] decoders = ImageCodecInfo.GetImageDecoders();
-            Bitmap bmp = new Bitmap(filePath);
-            foreach (ImageCodecInfo ici in decoders)
+            string asciiData = Encoding.ASCII.GetString(File.ReadAllBytes(filePath));
+            if (asciiData.Substring(1,3)=="PNG")
             {
-                if (ici.FormatDescription == "PNG" && !ImageAnimator.CanAnimate(bmp))
+                // IDATƒ`ƒƒƒ“ƒN‚Ì‘O‚ÉacTL‚ª‚ ‚ê‚Îapng‚Æ”»’è
+                long idatPos = asciiData.IndexOf("IDAT");
+                long acTLPos = asciiData.IndexOf("acTL");
+                if (acTLPos != -1 && acTLPos < idatPos)
                 {
-                    return true;
+                    return false;
                 }
+                return true;
             }
             return false;
         }
