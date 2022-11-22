@@ -97,7 +97,7 @@ namespace ZopfliPng_GUI
         private bool IsPNG(string filePath)
         {
             string asciiData = Encoding.ASCII.GetString(File.ReadAllBytes(filePath));
-            if (asciiData.Substring(1,3)=="PNG")
+            if (asciiData.Length > 2 && asciiData.Substring(1,3)=="PNG")
             {
                 // IDATƒ`ƒƒƒ“ƒN‚Ì‘O‚ÉacTL‚ª‚ ‚ê‚Îapng‚Æ”»’è
                 long idatPos = asciiData.IndexOf("IDAT");
