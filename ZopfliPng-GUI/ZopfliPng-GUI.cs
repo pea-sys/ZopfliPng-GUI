@@ -40,15 +40,16 @@ namespace ZopfliPng_GUI
                 {
                     foreach (string file in Directory.EnumerateFiles(strs[i], "*.png", SearchOption.AllDirectories))
                     {
-                        if (IsPNG(file))
+                        if (IsPNG(file) && ((File.GetAttributes(file) & FileAttributes.ReadOnly) != FileAttributes.ReadOnly))
                         {
                             _targetFiles.Add(file);
                         }
                     }
                 }
-                else if (File.Exists(strs[i]) && IsPNG(strs[i]))
+                else if (File.Exists(strs[i]))
                 {
-                    _targetFiles.Add(strs[i]);
+                    if (IsPNG(strs[i]) && ((File.GetAttributes(strs[i]) & FileAttributes.ReadOnly) != FileAttributes.ReadOnly))
+                    { _targetFiles.Add(strs[i]); }
                 }
             }
 
