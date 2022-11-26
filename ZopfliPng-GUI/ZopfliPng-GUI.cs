@@ -8,6 +8,7 @@ namespace ZopfliPng_GUI
     {
         private State _state = State.None;
         private HashSet<string> _targetFiles = new HashSet<string>();
+        private HashSet<string> _ignoreFiles = new HashSet<string>();
         private long beforeSize = 0;
         private long afterSize = 0;
         private long successCount = 0;
@@ -40,7 +41,7 @@ namespace ZopfliPng_GUI
                 {
                     foreach (string file in Directory.EnumerateFiles(strs[i], "*.png", SearchOption.AllDirectories))
                     {
-                        if (IsPNG(file) && ((File.GetAttributes(file) & FileAttributes.ReadOnly) != FileAttributes.ReadOnly))
+                        if (IsPNG(file))
                         {
                             _targetFiles.Add(file);
                         }
@@ -48,12 +49,13 @@ namespace ZopfliPng_GUI
                 }
                 else if (File.Exists(strs[i]))
                 {
-                    if (IsPNG(strs[i]) && ((File.GetAttributes(strs[i]) & FileAttributes.ReadOnly) != FileAttributes.ReadOnly))
-                    { _targetFiles.Add(strs[i]); }
+                    if (IsPNG(strs[i]))
+                    {
+                        _targetFiles.Add(strs[i]);
+                    }
                 }
             }
 
-            beforeSize = GetFileSize(_targetFiles.ToArray());
             successCount = 0;
             if (_targetFiles.Count > 0)
             {
@@ -67,6 +69,18 @@ namespace ZopfliPng_GUI
         private void compressButton_Click(object sender, EventArgs e)
         {
             if (_state != State.Ready) return;
+
+            foreach (var file in _targetFiles)
+            {
+                if (!File.Exists(file) ||
+                    ((File.GetAttributes(file) & FileAttributes.ReadOnly) == FileAttributes.ReadOnly))
+                {
+                    _ignoreFiles.Add(file);
+                }
+            }
+            _targetFiles.RemoveWhere(x => _ignoreFiles.Contains(x));
+
+            beforeSize = GetFileSize(_targetFiles.ToArray());
 
             ChangeState(State.Start);
             backgroundWorker.RunWorkerAsync();
@@ -93,6 +107,7 @@ namespace ZopfliPng_GUI
                 afterSize = GetFileSize(_targetFiles.ToArray());
                 ChangeState(State.End);
                 _targetFiles.Clear();
+                _ignoreFiles.Clear();
             }
         }
         private bool IsPNG(string filePath)
@@ -139,6 +154,7 @@ namespace ZopfliPng_GUI
                 }
                 Directory.CreateDirectory(workDir);
 
+
                 foreach (var file in _targetFiles)
                 {
                     workPath = workDir + @"\" + Path.GetFileName(file);
@@ -156,7 +172,6 @@ namespace ZopfliPng_GUI
                     }
                     File.Delete(workPath);
                     backgroundWorker.ReportProgress(index);
-                    
                 }
             }
             catch(Exception ex)
@@ -199,9 +214,8 @@ namespace ZopfliPng_GUI
                     compressButton.Enabled = true;
                     compressCountTitlelabel.Visible = false;
                     compressCountValuelabel.Visible = false;
-                    beforeSizeValueLabel.Text = beforeSize.ToString();
-                    beforeSizeTitleLabel.Visible = true;
-                    beforeSizeValueLabel.Visible = true;
+                    beforeSizeTitleLabel.Visible = false;
+                    beforeSizeValueLabel.Visible = false;
                     afterSizeTitleLabel.Visible = false;
                     afterSizeValueLabel.Visible = false;
                     break;
@@ -214,6 +228,9 @@ namespace ZopfliPng_GUI
                     progressBar.Maximum = _targetFiles.Count;
                     compressButton.Enabled = false;
                     backgroundWorker.WorkerReportsProgress = true;
+                    beforeSizeValueLabel.Text = beforeSize.ToString();
+                    beforeSizeTitleLabel.Visible = true;
+                    beforeSizeValueLabel.Visible = true;
                     break;
                 case State.End:
                     guidanceLabel.Text = String.Format("Finished({0}/{1})", progressBar.Value.ToString(), progressBar.Maximum.ToString());
