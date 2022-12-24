@@ -21,9 +21,9 @@ jobs:
     - uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'Stale issue message'
-        stale-pr-message: 'Stale pull request message'
+        stale-issue-message: 'This issue is stale because it has been open for 30 days with no activity.'
+        stale-pr-message: 'This issue was closed because it has been inactive for 10 days since being marked as stale.'
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
-        days-before-stale: 30
-        days-before-close: 5
+        days-before-stale: 40
+        days-before-close: 10
