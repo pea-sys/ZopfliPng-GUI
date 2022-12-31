@@ -15,8 +15,10 @@ namespace ZopfliPng_GUI
         public MainForm()
         {
             InitializeComponent();
+            MinCompressionRatioValueUpDown.Value = Properties.Settings.Default.MinCompressionRatio;
             ChangeState(State.None);
         }
+
         private void dropPointLabel_DragEnter(object sender, DragEventArgs e)
         {
             if (_state == State.Start) return;
@@ -147,7 +149,7 @@ namespace ZopfliPng_GUI
                     Process.Start(psi)?.WaitForExit();
                     afterSize = new FileInfo(workPath).Length;
                     reduceSize = (float)afterSize / (float)beforeSize * 100;
-                    if (reduceSize < (float)MinCompressionRatioValuepDown1.Value)
+                    if (reduceSize < (float)MinCompressionRatioValueUpDown.Value)
                     {
                         Debug.Print(file + reduceSize.ToString());
                         successCount++;
@@ -222,6 +224,12 @@ namespace ZopfliPng_GUI
                     dropPointLabel.AllowDrop = true;
                     break;
             }
+        }
+
+        private void settingSaveButton_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.MinCompressionRatio = MinCompressionRatioValueUpDown.Value;
+            Properties.Settings.Default.Save();
         }
     }
 }
