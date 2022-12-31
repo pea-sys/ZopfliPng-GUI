@@ -43,12 +43,13 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.mainPage = new System.Windows.Forms.TabPage();
             this.settingPage = new System.Windows.Forms.TabPage();
-            this.MinCompressionRatioValuepDown1 = new System.Windows.Forms.NumericUpDown();
+            this.settingSaveButton = new System.Windows.Forms.Button();
+            this.MinCompressionRatioValueUpDown = new System.Windows.Forms.NumericUpDown();
             this.MinCompressionRatioTitleLabel = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.settingPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MinCompressionRatioValuepDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MinCompressionRatioValueUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // compressButton
@@ -208,7 +209,8 @@
             // 
             // settingPage
             // 
-            this.settingPage.Controls.Add(this.MinCompressionRatioValuepDown1);
+            this.settingPage.Controls.Add(this.settingSaveButton);
+            this.settingPage.Controls.Add(this.MinCompressionRatioValueUpDown);
             this.settingPage.Controls.Add(this.MinCompressionRatioTitleLabel);
             this.settingPage.Location = new System.Drawing.Point(4, 24);
             this.settingPage.Name = "settingPage";
@@ -218,13 +220,23 @@
             this.settingPage.Text = "Settings";
             this.settingPage.UseVisualStyleBackColor = true;
             // 
-            // MinCompressionRatioValuepDown1
+            // settingSaveButton
             // 
-            this.MinCompressionRatioValuepDown1.Location = new System.Drawing.Point(155, 13);
-            this.MinCompressionRatioValuepDown1.Name = "MinCompressionRatioValuepDown1";
-            this.MinCompressionRatioValuepDown1.Size = new System.Drawing.Size(50, 23);
-            this.MinCompressionRatioValuepDown1.TabIndex = 13;
-            this.MinCompressionRatioValuepDown1.Value = new decimal(new int[] {
+            this.settingSaveButton.Location = new System.Drawing.Point(231, 137);
+            this.settingSaveButton.Name = "settingSaveButton";
+            this.settingSaveButton.Size = new System.Drawing.Size(44, 23);
+            this.settingSaveButton.TabIndex = 14;
+            this.settingSaveButton.Text = "Save";
+            this.settingSaveButton.UseVisualStyleBackColor = true;
+            this.settingSaveButton.Click += new System.EventHandler(this.settingSaveButton_Click);
+            // 
+            // MinCompressionRatioValuepDown
+            // 
+            this.MinCompressionRatioValueUpDown.Location = new System.Drawing.Point(155, 13);
+            this.MinCompressionRatioValueUpDown.Name = "MinCompressionRatioValuepDown";
+            this.MinCompressionRatioValueUpDown.Size = new System.Drawing.Size(50, 23);
+            this.MinCompressionRatioValueUpDown.TabIndex = 13;
+            this.MinCompressionRatioValueUpDown.Value = new decimal(new int[] {
             95,
             0,
             0,
@@ -257,7 +269,7 @@
             this.tabControl.ResumeLayout(false);
             this.mainPage.ResumeLayout(false);
             this.settingPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.MinCompressionRatioValuepDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MinCompressionRatioValueUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -278,7 +290,8 @@
         private TabControl tabControl;
         private TabPage mainPage;
         private TabPage settingPage;
-        private NumericUpDown MinCompressionRatioValuepDown1;
+        private NumericUpDown MinCompressionRatioValueUpDown;
         private Label MinCompressionRatioTitleLabel;
+        private Button settingSaveButton;
     }
 }
