@@ -1,5 +1,8 @@
 # ZopfliPng-GUI
+## 2023/01/04   
+## This project has been archived for integration into [other project](https://github.com/pea-sys/TSURUGI).
 
+-----
 GUI tool for lossless compression of Png files.  
 It can be handled with simple operations.
 
@@ -30,7 +33,8 @@ apng is excluded from optimization.
 
 - Ignore files with a compression ratio less than desired.
   An example is a setting to ignore size reductions up to 10%.
-  This can be used to deter repository size expansion in Git-managed projects.
+  This can be used to deter repository size expansion in Git-managed projects.  
+  
   ![o1](https://user-images.githubusercontent.com/49807271/202876612-0206e58f-fd8b-439b-91ba-6cfb5d22648d.png)
 
 ## [SupportOS]
